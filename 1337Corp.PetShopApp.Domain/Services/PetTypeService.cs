@@ -18,5 +18,15 @@ namespace _1337Corp.PetShopApp.Domain.Services
             _repo = repo;
         }
 
+        public PetType Create(PetType petType)
+        {
+            return _repo.Add(petType);
+        }
+
+        public List<PetType> GetAllTypes()
+        {
+            return _repo.FindAll();
+        }
+
     }
 }

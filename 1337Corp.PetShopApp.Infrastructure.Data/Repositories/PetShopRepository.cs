@@ -11,6 +11,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
     public class PetShopRepository : IPetRepository, IPetTypeRepository
     {
         private static List<Pet> _petTable = new List<Pet>();
+        private static List<PetType> _petTypeTable = new List<PetType>();
        
         private static int _id = 1;
         public Pet Add(Pet pet)
@@ -46,10 +47,30 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
             return p;
         }
 
+
         public List<Pet> FindAll()
         {
             return _petTable;
         }
 
+        public List<PetType> FindAllTypes()
+        {
+            return _petTypeTable;
+        }
+
+        public PetType Add(PetType petType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PetType> ListAllPetTypes()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<PetType> IPetTypeRepository.FindAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -74,6 +74,11 @@ namespace _1337Corp.PetShopApp.UI
 
         }
 
+        private void ListAllPetsByPrice()
+        {
+            throw new NotImplementedException();
+        }
+
         private void ExitProgram()
         {
             Environment.Exit(0);
