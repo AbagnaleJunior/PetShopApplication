@@ -62,14 +62,10 @@ namespace _1337Corp.PetShopApp.UI
 
                 if (choice == 6)
                 {
-                    ListAllPets();
+                    ListAllPetsByPrice();
                 }
 
-                if (choice == 7)
-                {
-                    ListAllPets();
-                }
-
+                
                 if (choice == 0)
                 {
                     ExitProgram();
@@ -127,7 +123,6 @@ namespace _1337Corp.PetShopApp.UI
             Print(StringConstants.CreateNewPetText);
             Print(StringConstants.UpdatePetText);
             Print(StringConstants.DeletePetText);
-            Print(StringConstants.SortPetsByPriceText);
             Print(StringConstants.CheapestPetsText);
 
             PrintNewLine();

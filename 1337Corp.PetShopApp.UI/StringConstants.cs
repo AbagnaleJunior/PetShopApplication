@@ -18,8 +18,7 @@ namespace _1337Corp.PetShopApp.UI
         public const string CreateNewPetText = "3: Create a new pet";
         public const string UpdatePetText = "4: Update a pet";
         public const string DeletePetText = "5: Delete pet";
-        public const string SortPetsByPriceText = "6: Sort Petlist by Price (High-Low).";
-        public const string CheapestPetsText = "7: Sort Petlist by Price (Low-High).";
+        public const string CheapestPetsText = "6: Sort Petlist by Price (Low-High).";
         public const string ExitPetShopText = "0: Exit Pet Shop";
 
         //Create & Update pet
