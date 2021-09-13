@@ -5,4 +5,8 @@
     <RootNamespace>_1337Corp.PetShopApp.Domain</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\1337Corp.PetShopApp.Core\1337Corp.PetShopApp.Core.csproj" />
+  </ItemGroup>
+
 </Project>

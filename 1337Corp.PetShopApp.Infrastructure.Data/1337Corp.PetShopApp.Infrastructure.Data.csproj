@@ -1,8 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>_1337Corp.PetShopApp.Infrastructure.Data</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\1337Corp.PetShopApp.Core\1337Corp.PetShopApp.Core.csproj" />
+    <ProjectReference Include="..\1337Corp.PetShopApp.Domain\1337Corp.PetShopApp.Domain.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace _1337Corp.PetShopApp.Core.IServices
 {
-    interface IPetTypeService
+    public interface IPetTypeService
     {
+
     }
 }

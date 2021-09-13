@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _1337Corp.PetShopApp.Domain.IRepositories
 {
-    interface IPetTypeRepository
+    public interface IPetTypeRepository
     {
     }
 }

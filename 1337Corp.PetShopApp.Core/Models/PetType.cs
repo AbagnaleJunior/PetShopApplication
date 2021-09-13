@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace _1337Corp.PetShopApp.Core.Models
 {
-    class PetType
+    public class PetType
     {
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; }
+
     }
 }
