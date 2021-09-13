@@ -19,6 +19,7 @@ namespace _1337Corp.PetShopApp.UI
             var serviceProvider = serviceCollection.BuildServiceProvider();
             var service = serviceProvider.GetRequiredService<IPetService>();
             var menu = new Menu(service);
+
             menu.Start();
         }
     }

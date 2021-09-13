@@ -12,7 +12,7 @@ namespace _1337Corp.PetShopApp.Core.IServices
         List<Pet> GetAllPets();
         List<Pet> GetPetsByType();
         Pet Create(Pet pet);
-        bool Delete(int petId);
+        string Delete(int petId);
         void UpdatePetName(int idToUpdate, string newPetName);
         void UpdatePetType(int idToUpdate, string newPetType);
         void UpdatePetBirthDate(int idToUpdate, DateTime newPetBirthDate);

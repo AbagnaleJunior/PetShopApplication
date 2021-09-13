@@ -1,5 +1,6 @@
 ﻿using _1337Corp.PetShopApp.Core.IServices;
 using _1337Corp.PetShopApp.Core.Models;
+using _1337Corp.PetShopApp.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace _1337Corp.PetShopApp.UI
 {
-    public class Menu
+    public class Menu : PetShopRepository
+
     {
+
 
         private IPetService _service;
 
@@ -20,9 +23,11 @@ namespace _1337Corp.PetShopApp.UI
 
         public void Start()
         {
+            InitData();
             ShowIntroMessage();
             StartLoop();
         }
+
 
         private void ShowIntroMessage()
         {
@@ -42,7 +47,7 @@ namespace _1337Corp.PetShopApp.UI
 
                 if (choice == 2)
                 {
-                    ListAllPets();
+                    SearchForTypesOfPet();
                 }
 
                 if (choice == 3)
@@ -52,7 +57,7 @@ namespace _1337Corp.PetShopApp.UI
 
                 if (choice == 4)
                 {
-                    ListAllPets();
+                    UpdatePet();
                 }
 
                 if (choice == 5)
@@ -72,6 +77,18 @@ namespace _1337Corp.PetShopApp.UI
                 }
             }
 
+        }
+
+
+
+        private void SearchForTypesOfPet()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UpdatePet()
+        {
+            throw new NotImplementedException();
         }
 
         private void ListAllPetsByPrice()
@@ -214,10 +231,8 @@ namespace _1337Corp.PetShopApp.UI
             Print($"Price: {pet.Price}" + "$");
             Print($"Sold: {pet.SoldDate.ToString("dd-MM-yyyy")}");
 
-            PrintNewLine();
-            PrintNewLine();
-            PrintNewLine();
-            PrintNewLine();
+            Print("");
+            Print("------------------------------------------");
         }
 
     }

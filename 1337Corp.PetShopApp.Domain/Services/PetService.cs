@@ -24,7 +24,7 @@ namespace _1337Corp.PetShopApp.Domain.Services
             return _repo.Add(pet);
         }
 
-        public bool Delete(int petId)
+        public string Delete(int petId)
         {
             return _repo.Delete(petId);
         }
