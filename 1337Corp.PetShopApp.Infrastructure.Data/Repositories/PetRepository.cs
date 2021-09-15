@@ -8,46 +8,24 @@ using System.Threading.Tasks;
 
 namespace _1337Corp.PetShopApp.Infrastructure.Data
 {
-    public class PetShopRepository : IPetRepository, IPetTypeRepository
+    public class PetRepository : IPetRepository
     {
         private static List<Pet> _petTable = new List<Pet>();
-        private static List<PetType> _petTypeTable = new List<PetType>();
         private string deletedPet;
 
         private static int _id = 7;
+        PetType dog;
+        PetType cat;
+        PetType owl;
+        PetType snake;
+        PetType panda;
+        PetType turtle;
+
 
         public void InitData()
         {
-            PetType dog = new PetType
-            {
-                Name = "Dog",
-                Id = 1
-            };
-            PetType cat = new PetType
-            {
-                Name = "Cat",
-                Id = 2
-            };
-            PetType owl = new PetType
-            {
-                Name = "Owl",
-                Id = 3
-            };
-            PetType snake = new PetType
-            {
-                Name = "Snake",
-                Id = 4
-            };
-            PetType panda = new PetType
-            {
-                Name = "Panda",
-                Id = 5
-            };
-            PetType turtle = new PetType
-            {
-                Name = "Turtle",
-                Id = 6
-            };
+            
+
             Pet pet1 = new Pet()
             {
                 Id = 1,
@@ -114,7 +92,8 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
             _petTable.Add(pet4);
             _petTable.Add(pet5);
             _petTable.Add(pet6);
-        }
+
+            }
         public Pet Add(Pet pet)
         {
             pet.Id = _id++;
@@ -153,25 +132,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
             return _petTable;
         }
 
-        public List<PetType> FindAllTypes()
-        {
-            return _petTypeTable;
-        }
-
-        public PetType Add(PetType petType)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<PetType> ListAllPetTypes()
-        {
-            throw new NotImplementedException();
-        }
-
-        List<PetType> IPetTypeRepository.FindAll()
-        {
-            throw new NotImplementedException();
-        }
-    
+       
+       
     }
 }

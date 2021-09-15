@@ -13,9 +13,11 @@ namespace _1337Corp.PetShopApp.Domain.Services
     {
         private IPetTypeRepository _repo;
 
-        public PetTypeService(IPetTypeRepository repo)
+        
+        
+        public PetTypeService(IPetTypeRepository petTypeRepo)
         {
-            _repo = repo;
+            _repo = petTypeRepo;
         }
 
         public PetType Create(PetType petType)
@@ -23,10 +25,24 @@ namespace _1337Corp.PetShopApp.Domain.Services
             return _repo.Add(petType);
         }
 
-        public List<PetType> GetAllTypes()
+        public void InitData()
         {
-            return _repo.FindAll();
+            _repo.InitData();
         }
 
+        public List<PetType> GetAllTypes()
+        {
+            return _repo.FindAllTypes();
+        }
+
+        public PetType GetPetTypeById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PetType CreatePetType(PetType petType)
+        {
+            return _repo.Add(petType);
+        }
     }
 }

@@ -12,13 +12,19 @@ namespace _1337Corp.PetShopApp.Domain.Services
     public class PetService : IPetService
     {
         private IPetRepository _repo;
+                
 
         public PetService(IPetRepository repo)
         {
             _repo = repo;
+            
         }
 
-
+        public void InitData()
+        {
+            _repo.InitData();
+        }
+      
         public Pet Create(Pet pet)
         {
             return _repo.Add(pet);
@@ -33,6 +39,7 @@ namespace _1337Corp.PetShopApp.Domain.Services
         {
             return _repo.FindAll();
         }
+        
 
         public List<Pet> GetPetsByType()
         {
@@ -65,6 +72,11 @@ namespace _1337Corp.PetShopApp.Domain.Services
         }
 
         public void UpdatePetType(int idToUpdate, string newPetType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PetType> GetPetTypes()
         {
             throw new NotImplementedException();
         }

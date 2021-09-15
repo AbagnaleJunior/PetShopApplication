@@ -18,7 +18,9 @@ namespace _1337Corp.PetShopApp.UI
         public const string CreateNewPetText = "3: Create a new pet";
         public const string UpdatePetText = "4: Update a pet";
         public const string DeletePetText = "5: Delete pet";
-        public const string CheapestPetsText = "6: Sort Petlist by Price (Low-High).";
+        public const string CheapestPetsText = "6: Sort Petlist by Price (low to high)";
+        public const string ShowTypes = "7: Show pet types";
+        public const string CreateTypes = "8: Create Type";
         public const string ExitPetShopText = "0: Exit Pet Shop";
 
         //Create & Update pet
@@ -32,7 +34,8 @@ namespace _1337Corp.PetShopApp.UI
         //Delete pet
         public const string DeleteEnterPetId = "Enter ID to delete pet";
 
-        
 
+        //Create Type
+        public const string ValueCannotBeNullText = "Value cannot be null";
     }
 }

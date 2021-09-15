@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace _1337Corp.PetShopApp.Domain.IRepositories
 {
-    public interface IPetTypeRepository
+    public interface IPetTypeRepository : IInitializableRepository
     {
 
         PetType Add(PetType petType);
 
-        List<PetType> ListAllPetTypes();
-        List<PetType> FindAll();
+        List<PetType> FindAllTypes();
+
+        PetType ReadById(int id);
+
     }
 }

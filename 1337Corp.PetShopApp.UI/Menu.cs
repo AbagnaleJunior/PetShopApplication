@@ -1,5 +1,6 @@
 ﻿using _1337Corp.PetShopApp.Core.IServices;
 using _1337Corp.PetShopApp.Core.Models;
+using _1337Corp.PetShopApp.Domain.Services;
 using _1337Corp.PetShopApp.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -9,25 +10,28 @@ using System.Threading.Tasks;
 
 namespace _1337Corp.PetShopApp.UI
 {
-    public class Menu : PetShopRepository
+    public class Menu
 
     {
+        private IPetService _petService;
+        private IPetTypeService _typeService;
+        private string petType;
 
-
-        private IPetService _service;
-
-        public Menu(IPetService service)
+        public Menu(IPetService petService, IPetTypeService typeService)
         {
-            _service = service;
+            _petService = petService;
+            _typeService = typeService;
+            
         }
 
         public void Start()
-        {
-            InitData();
+        {   _typeService.InitData();
+            _petService.InitData();
             ShowIntroMessage();
             StartLoop();
         }
 
+       
 
         private void ShowIntroMessage()
         {
@@ -37,7 +41,7 @@ namespace _1337Corp.PetShopApp.UI
         private void StartLoop()
         {
             int choice;
-            while ((choice = GetMainMeniSelection()) !=0)
+            while ((choice = GetMainMeniSelection()) != 0)
             {
 
                 if (choice == 1)
@@ -67,16 +71,55 @@ namespace _1337Corp.PetShopApp.UI
 
                 if (choice == 6)
                 {
-                    ListAllPetsByPrice();
+                    ListCheapestPets();
                 }
 
-                
+                if (choice == 7)
+                {
+                    ShowTypes();
+                }
+
+                if (choice == 8)
+                {
+                    CreateType();
+                }
+
+
                 if (choice == 0)
                 {
                     ExitProgram();
                 }
             }
 
+        }
+
+        private void CreateType()
+        {
+            var petType = Console.ReadLine();
+            var type = new PetType
+            {
+                Name = petType
+            };
+
+            type = _typeService.CreatePetType(type);
+
+
+        }
+
+            private void ShowTypes()
+        {
+
+            Clear();
+            Print("List of all types:");
+            List<PetType> types = _typeService.GetAllTypes();
+            foreach (var Name in types)
+            {
+                Print($"Type: {Name.Name}");
+
+            }
+
+            Print("");
+            Print("------------------------------------------");
         }
 
 
@@ -91,9 +134,23 @@ namespace _1337Corp.PetShopApp.UI
             throw new NotImplementedException();
         }
 
-        private void ListAllPetsByPrice()
+        private void ListCheapestPets()
         {
-            throw new NotImplementedException();
+
+            List<Pet> pets = _petService.GetAllPets();
+            List<Pet> cheapestPets = pets.OrderBy(pet => pet.Price).ToList();
+
+            foreach (var pet in cheapestPets)
+            {
+                Print("");
+                Print($"Id: {pet.Id.Value}");
+                Print($"Type: {pet.PetType}");
+                Print($"Name: {pet.Name}");
+                Print($"Color: {pet.Color}");
+                Print($"BirthDate: {pet.BirthDate.ToString("dd-MM-yyyy")}");
+                Print($"Price: {pet.Price}" + "$");
+                Print($"Sold: {pet.SoldDate.ToString("dd-MM-yyyy")}");
+            }
         }
 
         private void ExitProgram()
@@ -106,9 +163,9 @@ namespace _1337Corp.PetShopApp.UI
             Console.WriteLine(StringConstants.DeleteEnterPetId);
             var petId = Console.ReadLine();
             int selectionId = Int32.Parse(petId);
-            
+
             {
-                var deletedPetName = _service.Delete(selectionId);
+                var deletedPetName = _petService.Delete(selectionId);
                 Console.WriteLine($"The pet {deletedPetName} with the ID {petId}, has been deleted.");
             }
         }
@@ -138,7 +195,7 @@ namespace _1337Corp.PetShopApp.UI
         {
             PrintNewLine();
             Print(StringConstants.MenuGuideText);
-            
+
             PrintNewLine();
             Print(StringConstants.PrintAllPetsListText);
             Print(StringConstants.SearchByPetTypeText);
@@ -146,27 +203,29 @@ namespace _1337Corp.PetShopApp.UI
             Print(StringConstants.UpdatePetText);
             Print(StringConstants.DeletePetText);
             Print(StringConstants.CheapestPetsText);
+            Print(StringConstants.ShowTypes);
+            Print(StringConstants.CreateTypes);
 
             PrintNewLine();
             Print(StringConstants.ExitPetShopText);
 
-    }
+        }
         private void Print(string value)
         {
             Console.WriteLine(value);
         }
 
-       
+
         private void ListAllPets()
         {
             Clear();
             Print("List of all your pets");
-            var pets = _service.GetAllPets();
+            var pets = _petService.GetAllPets();
             foreach (var pet in pets)
             {
                 Print("");
                 Print($"Id: {pet.Id.Value}");
-                Print($"Type: {pet.Type.Name}");
+                Print($"Type: {pet.Type}");
                 Print($"Name: {pet.Name}");
                 Print($"Color: {pet.Color}");
                 Print($"BirthDate: {pet.BirthDate.ToString("dd-MM-yyyy")}");
@@ -184,7 +243,7 @@ namespace _1337Corp.PetShopApp.UI
             Clear();
 
             Print(StringConstants.PetTypeText);
-            PetType newPetType = new PetType(); 
+            PetType newPetType = new PetType();
             var petType = Console.ReadLine();
             newPetType.Name = petType;
 
@@ -219,7 +278,7 @@ namespace _1337Corp.PetShopApp.UI
 
             };
 
-            pet = _service.Create(pet);
+            pet = _petService.Create(pet);
 
             Clear();
             Print($"Pet With Following Properties Created:");
@@ -234,6 +293,7 @@ namespace _1337Corp.PetShopApp.UI
             Print("");
             Print("------------------------------------------");
         }
-
     }
+
 }
+
