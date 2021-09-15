@@ -10,16 +10,12 @@ namespace _1337Corp.PetShopApp.Core.IServices
     public interface IPetService : IInitializableService
     {
         List<Pet> GetAllPets();
-        List<Pet> GetPetsByType();
-        List<PetType> GetPetTypes();
+        List<Pet> GetPetsByType(PetType petType);
+       
         Pet Create(Pet pet);
         string Delete(int petId);
-        void UpdatePetName(int idToUpdate, string newPetName);
-        void UpdatePetType(int idToUpdate, string newPetType);
-        void UpdatePetBirthDate(int idToUpdate, DateTime newPetBirthDate);
-        void UpdatePetSoldDate(int idToUpdate, DateTime newPetSoldDate);
-        void UpdatePetColor(int idToUpdate, string newPetColoer);
-        void UpdatePetPrice(int idToUpdate, double newPetPrice);
+        Pet Update(Pet pet);
+        Pet SearchPetById(int id);
         
 
     }

@@ -37,12 +37,13 @@ namespace _1337Corp.PetShopApp.Domain.Services
 
         public PetType GetPetTypeById(int id)
         {
-            throw new NotImplementedException();
+            return _repo.ReadById(id);
         }
 
         public PetType CreatePetType(PetType petType)
         {
             return _repo.Add(petType);
         }
+
     }
 }

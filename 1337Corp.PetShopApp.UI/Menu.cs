@@ -15,7 +15,8 @@ namespace _1337Corp.PetShopApp.UI
     {
         private IPetService _petService;
         private IPetTypeService _typeService;
-        private string petType;
+       
+
 
         public Menu(IPetService petService, IPetTypeService typeService)
         {
@@ -25,8 +26,12 @@ namespace _1337Corp.PetShopApp.UI
         }
 
         public void Start()
-        {   _typeService.InitData();
+        {  
+           
+            
+            _typeService.InitData();
             _petService.InitData();
+
             ShowIntroMessage();
             StartLoop();
         }
@@ -61,7 +66,7 @@ namespace _1337Corp.PetShopApp.UI
 
                 if (choice == 4)
                 {
-                    UpdatePet();
+                    Update();
                 }
 
                 if (choice == 5)
@@ -129,9 +134,38 @@ namespace _1337Corp.PetShopApp.UI
             throw new NotImplementedException();
         }
 
-        private void UpdatePet()
+        private void Update()
         {
-            throw new NotImplementedException();
+            Print(StringConstants.UpdatedEnterPetID);
+            var updateId = int.Parse(Console.ReadLine()!);
+            var updatePet = _petService.SearchPetById(updateId);
+
+            Print(StringConstants.UpdatedPetName);
+            var updatedName = Console.ReadLine();
+
+
+            Print(StringConstants.UpdatedColor);
+            var updatedColor = Console.ReadLine();
+
+            Print(StringConstants.UpdatedSoldDate);
+            var updatedSoldDate = Convert.ToDateTime(Console.ReadLine());
+
+            Print(StringConstants.UpdatedPrice);
+            var updatedPrice = double.Parse(Console.ReadLine()!);
+
+
+            _petService.Update(new Pet()
+            {
+
+                Id = updatePet.Id,
+                Name = updatedName,
+                Color = updatedColor,
+                SoldDate = updatedSoldDate,
+                Price = updatedPrice
+
+            });
+
+            Print($"{updatePet.Name} was updated.");
         }
 
         private void ListCheapestPets()
@@ -143,8 +177,8 @@ namespace _1337Corp.PetShopApp.UI
             foreach (var pet in cheapestPets)
             {
                 Print("");
-                Print($"Id: {pet.Id.Value}");
-                Print($"Type: {pet.PetType}");
+                Print($"Id: {pet.Id}");
+                Print($"Type: {pet.Type.Name}");
                 Print($"Name: {pet.Name}");
                 Print($"Color: {pet.Color}");
                 Print($"BirthDate: {pet.BirthDate.ToString("dd-MM-yyyy")}");
@@ -221,11 +255,13 @@ namespace _1337Corp.PetShopApp.UI
             Clear();
             Print("List of all your pets");
             var pets = _petService.GetAllPets();
+            
+            
             foreach (var pet in pets)
             {
                 Print("");
-                Print($"Id: {pet.Id.Value}");
-                Print($"Type: {pet.Type}");
+                Print($"Id: {pet.Id}");
+                Print($"Type: {pet.Type.Name}");
                 Print($"Name: {pet.Name}");
                 Print($"Color: {pet.Color}");
                 Print($"BirthDate: {pet.BirthDate.ToString("dd-MM-yyyy")}");
@@ -282,7 +318,7 @@ namespace _1337Corp.PetShopApp.UI
 
             Clear();
             Print($"Pet With Following Properties Created:");
-            Print($"Id: {pet.Id.Value}");
+            Print($"Id: {pet.Id}");
             Print($"Type: {pet.Type.Name}");
             Print($"Name: {pet.Name}");
             Print($"Color: {pet.Color}");

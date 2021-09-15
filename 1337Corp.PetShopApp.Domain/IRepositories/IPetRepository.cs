@@ -14,6 +14,9 @@ namespace _1337Corp.PetShopApp.Domain.IRepositories
         List<Pet> FindAll();
         string Delete(int petId);
 
-      
+        Pet Update(Pet petUpdate);
+
+        Pet ReadById(int id);
+        List<Pet> ReadPetByType(PetType petType);
     }
 }

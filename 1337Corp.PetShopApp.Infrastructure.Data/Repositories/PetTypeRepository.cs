@@ -11,7 +11,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
     public class PetTypeRepository : IPetTypeRepository
     {
 
-        private static List<PetType> _petTypeTable = new List<PetType>();
+        public static List<PetType> _petTypeTable = new List<PetType>();
         private static int _petTypeId = 7;
 
         public void InitData()
@@ -46,13 +46,8 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Name = "Turtle",
                 Id = 6
             };
-           
-            _petTypeTable.Add(dog);
-            _petTypeTable.Add(cat);
-            _petTypeTable.Add(owl);
-            _petTypeTable.Add(snake);
-            _petTypeTable.Add(panda);
-            _petTypeTable.Add(turtle);
+
+            _petTypeTable.AddRange(new List<PetType> { dog, cat, owl, snake, panda, turtle });
 
         }
 

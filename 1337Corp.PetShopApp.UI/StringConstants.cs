@@ -30,7 +30,12 @@ namespace _1337Corp.PetShopApp.UI
         public const string PetPriceText = "Price? (USD)";
         public const string PetSoldDateText = "Sold when? (dd-mm-yyyy)";
         public const string PetBirthDayText = "Date of birth? (dd-mm-yyyy)";
-
+        
+        public const string UpdatedEnterPetID = "Enter ID to update pet";
+        public const string UpdatedPetName = "Enter your pets new name:";
+        public const string UpdatedPrice = "Enter your pets new price:";
+        public const string UpdatedColor = "Enter new color";
+        public const string UpdatedSoldDate = "Enter new sold date";
         //Delete pet
         public const string DeleteEnterPetId = "Enter ID to delete pet";
 

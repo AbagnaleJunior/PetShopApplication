@@ -11,15 +11,16 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
     public class PetRepository : IPetRepository
     {
         private static List<Pet> _petTable = new List<Pet>();
+        public static List<PetType> _petTypeTable = new List<PetType>();
         private string deletedPet;
 
         private static int _id = 7;
-        PetType dog;
-        PetType cat;
-        PetType owl;
-        PetType snake;
-        PetType panda;
-        PetType turtle;
+        public PetType dog;
+        public PetType cat;
+        public PetType owl;
+        public PetType snake;
+        public PetType panda;
+        public PetType turtle;
 
 
         public void InitData()
@@ -28,6 +29,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
 
             Pet pet1 = new Pet()
             {
+                
                 Id = 1,
                 Name = "Fido",
                 Type = dog,
@@ -112,7 +114,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
             return deletedPet;
         }
 
-        public Pet GetPetById(int? id)
+        public Pet GetPetById(int id)
         {
             Pet p = null;
             for (int i = 0; i < _petTable.Count; i++)
@@ -132,7 +134,27 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
             return _petTable;
         }
 
-       
-       
+        public Pet Update(Pet petUpdate)
+        {
+            var pet = ReadById(petUpdate.Id);
+            if (pet == null) return null;
+            pet.Name = petUpdate.Name;
+            pet.Price = petUpdate.Price;
+            pet.Color = petUpdate.Color;
+            pet.SoldDate = petUpdate.SoldDate;
+
+            return pet;
+
+        }
+
+        public Pet ReadById(int id)
+        {
+            return _petTable.FirstOrDefault(pet => pet.Id == id);
+        }
+
+        public List<Pet> ReadPetByType(PetType petType)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
