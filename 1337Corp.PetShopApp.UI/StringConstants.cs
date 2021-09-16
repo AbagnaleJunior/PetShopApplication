@@ -24,7 +24,7 @@ namespace _1337Corp.PetShopApp.UI
         public const string ExitPetShopText = "0: Exit Pet Shop";
 
         //Create & Update pet
-        public const string PetTypeText = "Type?";
+        public const string PetTypeText = "Type? Enter ID";
         public const string PetNameText = "Name?";
         public const string PetColorText = "Color?";
         public const string PetPriceText = "Price? (USD)";
@@ -42,5 +42,6 @@ namespace _1337Corp.PetShopApp.UI
 
         //Create Type
         public const string ValueCannotBeNullText = "Value cannot be null";
+        public const string SearchForTypes = "Find pets available by type..";
     }
 }

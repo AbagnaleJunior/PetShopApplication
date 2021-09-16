@@ -10,5 +10,6 @@ namespace _1337Corp.PetShopApp.Core.IServices
     {
 
         void InitData();
+
     }
 }

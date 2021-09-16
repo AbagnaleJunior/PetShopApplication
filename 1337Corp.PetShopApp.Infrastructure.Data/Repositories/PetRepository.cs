@@ -10,26 +10,53 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
 {
     public class PetRepository : IPetRepository
     {
-        private static List<Pet> _petTable = new List<Pet>();
-        public static List<PetType> _petTypeTable = new List<PetType>();
-        private string deletedPet;
-
+        private static List<PetType> _types = new List<PetType>();
+        private static List<Pet> _pets = new List<Pet>();
         private static int _id = 7;
-        public PetType dog;
-        public PetType cat;
-        public PetType owl;
-        public PetType snake;
-        public PetType panda;
-        public PetType turtle;
-
+        
 
         public void InitData()
         {
-            
+            PetType dog = new PetType
+            {
+                Name = "dog",
+                Id = 1
+            };
+            PetType cat = new PetType
+            {
+                Name = "cat",
+                Id = 2
+            };
+            PetType owl = new PetType
+            {
+                Name = "owl",
+                Id = 3
+            };
+            PetType snake = new PetType
+            {
+                Name = "snake",
+                Id = 4
+            };
+            PetType panda = new PetType
+            {
+                Name = "panda",
+                Id = 5
+            };
+            PetType turtle = new PetType
+            {
+                Name = "turtle",
+                Id = 6
+            };
+            PetType beetle = new PetType
+            {
+                Name = "beetle",
+                Id = 7
+            };
+
+            _types.AddRange(new List<PetType> { dog, cat, owl, snake, panda, turtle, beetle });
 
             Pet pet1 = new Pet()
             {
-                
                 Id = 1,
                 Name = "Fido",
                 Type = dog,
@@ -38,6 +65,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Color = "Red",
                 Price = 500
             };
+
             Pet pet2 = new Pet()
             {
                 Id = 2,
@@ -48,6 +76,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Color = "Blue",
                 Price = 255
             };
+
             Pet pet3 = new Pet()
             {
                 Id = 3,
@@ -58,6 +87,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Color = "White",
                 Price = 2000
             };
+
             Pet pet4 = new Pet()
             {
                 Id = 4,
@@ -68,6 +98,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Color = "Green",
                 Price = 500000
             };
+
             Pet pet5 = new Pet()
             {
                 Id = 5,
@@ -78,6 +109,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Color = "Black/White",
                 Price = 300
             };
+
             Pet pet6 = new Pet()
             {
                 Id = 6,
@@ -88,50 +120,60 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Color = "Green",
                 Price = 10000
             };
-            _petTable.Add(pet1);
-            _petTable.Add(pet2);
-            _petTable.Add(pet3);
-            _petTable.Add(pet4);
-            _petTable.Add(pet5);
-            _petTable.Add(pet6);
+            Pet pet7 = new Pet()
+            {
+                Id = 7,
+                Name = "Per",
+                Type = cat,
+                BirthDate = new DateTime(1337, 1, 1),
+                SoldDate = new DateTime(2001, 07, 28),
+                Color = "black",
+                Price = 1337
+            };
+            _pets.Add(pet1);
+            _pets.Add(pet2);
+            _pets.Add(pet3);
+            _pets.Add(pet4);
+            _pets.Add(pet5);
+            _pets.Add(pet6);
+            _pets.Add(pet7);
 
-            }
+
+        }
+
         public Pet Add(Pet pet)
         {
             pet.Id = _id++;
-            _petTable.Add(pet);
+            _pets.Add(pet);
             return pet;
         }
 
-        public string Delete(int id)
+        public void Delete(int id)
         {
             Pet pet = GetPetById(id);
-            if (id == pet.Id)
+            if (pet != null)
             {
-                _petTable.Remove(pet);
-                deletedPet = pet.Name;
+                _pets.Remove(pet);
             }
-            return deletedPet;
         }
 
         public Pet GetPetById(int id)
         {
             Pet p = null;
-            for (int i = 0; i < _petTable.Count; i++)
+            for (int i = 0; i < _pets.Count; i++)
             {
-                if (_petTable[i].Id == id)
+                if (_pets[i].Id == id)
                 {
-                    p = _petTable[i];
+                    p = _pets[i];
                 }
             }
-
             return p;
         }
 
 
-        public List<Pet> FindAll()
+        public List<Pet> ReadAll()
         {
-            return _petTable;
+            return _pets;
         }
 
         public Pet Update(Pet petUpdate)
@@ -149,12 +191,13 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
 
         public Pet ReadById(int id)
         {
-            return _petTable.FirstOrDefault(pet => pet.Id == id);
+            return _pets.FirstOrDefault(pet => pet.Id == id);
         }
 
         public List<Pet> ReadPetByType(PetType petType)
         {
             throw new NotImplementedException();
         }
+       
     }
 }

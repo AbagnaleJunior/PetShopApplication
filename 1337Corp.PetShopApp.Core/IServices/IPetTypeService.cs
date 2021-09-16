@@ -11,6 +11,6 @@ namespace _1337Corp.PetShopApp.Core.IServices
     {
         List<PetType> GetAllTypes();
         PetType GetPetTypeById(int id);
-        PetType CreatePetType(PetType petType);
+        PetType CreateType(PetType petType);
     }
 }

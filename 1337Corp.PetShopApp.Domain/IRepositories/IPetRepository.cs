@@ -11,8 +11,8 @@ namespace _1337Corp.PetShopApp.Domain.IRepositories
     {
 
         Pet Add(Pet pet);
-        List<Pet> FindAll();
-        string Delete(int petId);
+        List<Pet> ReadAll();
+        void Delete(int petId);
 
         Pet Update(Pet petUpdate);
 

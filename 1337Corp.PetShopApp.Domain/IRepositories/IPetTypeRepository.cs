@@ -10,9 +10,9 @@ namespace _1337Corp.PetShopApp.Domain.IRepositories
     public interface IPetTypeRepository : IInitializableRepository
     {
 
-        PetType Add(PetType petType);
+        PetType Create(PetType petType);
 
-        List<PetType> FindAllTypes();
+        List<PetType> ReadAllTypes();
 
         PetType ReadById(int id);
 

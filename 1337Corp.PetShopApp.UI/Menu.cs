@@ -26,17 +26,13 @@ namespace _1337Corp.PetShopApp.UI
         }
 
         public void Start()
-        {  
-           
-            
+        {
             _typeService.InitData();
             _petService.InitData();
-
+            
             ShowIntroMessage();
             StartLoop();
         }
-
-       
 
         private void ShowIntroMessage()
         {
@@ -53,12 +49,12 @@ namespace _1337Corp.PetShopApp.UI
                 {
                     ListAllPets();
                 }
-
+               
                 if (choice == 2)
                 {
                     SearchForTypesOfPet();
                 }
-
+                
                 if (choice == 3)
                 {
                     CreatePet();
@@ -81,7 +77,7 @@ namespace _1337Corp.PetShopApp.UI
 
                 if (choice == 7)
                 {
-                    ShowTypes();
+                    ReadTypes();
                 }
 
                 if (choice == 8)
@@ -89,37 +85,41 @@ namespace _1337Corp.PetShopApp.UI
                     CreateType();
                 }
 
-
                 if (choice == 0)
                 {
                     ExitProgram();
                 }
+                
             }
 
         }
 
         private void CreateType()
         {
+            ReadTypes();
+            Print("What Type do you want to add?");
             var petType = Console.ReadLine();
             var type = new PetType
             {
                 Name = petType
             };
 
-            type = _typeService.CreatePetType(type);
+            type = _typeService.CreateType(type);
+            ReadTypes();
+            Print($"Type: '{petType}' was added");
 
 
         }
 
-            private void ShowTypes()
+            private void ReadTypes()
         {
 
             Clear();
             Print("List of all types:");
-            List<PetType> types = _typeService.GetAllTypes();
-            foreach (var Name in types)
+            
+            foreach (var type in _typeService.GetAllTypes())
             {
-                Print($"Type: {Name.Name}");
+                Print($"ID: {type.Id} - {type.Name}");
 
             }
 
@@ -131,11 +131,29 @@ namespace _1337Corp.PetShopApp.UI
 
         private void SearchForTypesOfPet()
         {
-            throw new NotImplementedException();
+            Clear();
+            Print(StringConstants.SearchForTypes);
+            Print("What animal do you want to search for? use small letters (cat)");
+            var TypesSearch = Console.ReadLine();
+            Clear();
+
+            foreach (var pet in _petService.GetPetsByType(TypesSearch))
+            {
+                
+                Print($"ID: {pet.Id}, Type: {pet.Type.Name}, Name: {pet.Name}, BirthDate: {pet.BirthDate}, Color: {pet.Color}, Price: {pet.Price}, Sold on: {pet.SoldDate}");
+                
+                Print("------------------------------------------");
+            }
+            
+            
         }
 
         private void Update()
         {
+            Clear();
+            UpdateListAllPets();
+            Print("");
+
             Print(StringConstants.UpdatedEnterPetID);
             var updateId = int.Parse(Console.ReadLine()!);
             var updatePet = _petService.SearchPetById(updateId);
@@ -172,6 +190,7 @@ namespace _1337Corp.PetShopApp.UI
         {
 
             List<Pet> pets = _petService.GetAllPets();
+            
             List<Pet> cheapestPets = pets.OrderBy(pet => pet.Price).ToList();
 
             foreach (var pet in cheapestPets)
@@ -184,6 +203,9 @@ namespace _1337Corp.PetShopApp.UI
                 Print($"BirthDate: {pet.BirthDate.ToString("dd-MM-yyyy")}");
                 Print($"Price: {pet.Price}" + "$");
                 Print($"Sold: {pet.SoldDate.ToString("dd-MM-yyyy")}");
+
+                Print("");
+                Print("------------------------------------------");
             }
         }
 
@@ -194,12 +216,16 @@ namespace _1337Corp.PetShopApp.UI
 
         private void DeletePet()
         {
+            Clear();
+            ListAllPets();
             Console.WriteLine(StringConstants.DeleteEnterPetId);
             var petId = Console.ReadLine();
-            int selectionId = Int32.Parse(petId);
+            int selectionId = int.Parse(petId);
 
             {
-                var deletedPetName = _petService.Delete(selectionId);
+                var deletedPetName = int.Parse(Console.ReadLine()!);
+                _petService.Delete(deletedPetName);
+                Clear();
                 Console.WriteLine($"The pet {deletedPetName} with the ID {petId}, has been deleted.");
             }
         }
@@ -254,12 +280,13 @@ namespace _1337Corp.PetShopApp.UI
         {
             Clear();
             Print("List of all your pets");
+            Print("");
             var pets = _petService.GetAllPets();
-            
-            
+
+
             foreach (var pet in pets)
             {
-                Print("");
+
                 Print($"Id: {pet.Id}");
                 Print($"Type: {pet.Type.Name}");
                 Print($"Name: {pet.Name}");
@@ -267,22 +294,45 @@ namespace _1337Corp.PetShopApp.UI
                 Print($"BirthDate: {pet.BirthDate.ToString("dd-MM-yyyy")}");
                 Print($"Price: {pet.Price}" + "$");
                 Print($"Sold: {pet.SoldDate.ToString("dd-MM-yyyy")}");
+                Print("------------------------------------------");
             }
-
-            Print("");
-            Print("------------------------------------------");
         }
+        
+
+            private void UpdateListAllPets()
+            {
+                Clear();
+                Print("List of all your pets");
+                Print("");
+                var pets = _petService.GetAllPets();
+
+
+                foreach (var pet in pets)
+                {
+
+                    Print($"Id: {pet.Id}");
+                    Print($"Type: {pet.Type}");
+                    Print($"Name: {pet.Name}");
+                    Print($"Color: {pet.Color}");
+                    Print($"Price: {pet.Price}" + "$");
+                    Print($"Sold: {pet.SoldDate.ToString("dd-MM-yyyy")}");
+
+                Print("------------------------------------------");
+                }
+
+            }
 
         private void CreatePet()
         {
 
             Clear();
+            ReadTypes();
 
             Print(StringConstants.PetTypeText);
-            PetType newPetType = new PetType();
-            var petType = Console.ReadLine();
-            newPetType.Name = petType;
+            int typeId = int.Parse(Console.ReadLine()!);
+            PetType petType = _typeService.GetPetTypeById(typeId);
 
+            
             Clear();
             Print(StringConstants.PetNameText);
             var petName = Console.ReadLine();
@@ -305,7 +355,7 @@ namespace _1337Corp.PetShopApp.UI
 
             var pet = new Pet
             {
-                Type = newPetType,
+                Type = petType,
                 Name = petName,
                 Color = petColor,
                 BirthDate = Convert.ToDateTime(petBirthDate),

@@ -11,11 +11,13 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
     public class PetTypeRepository : IPetTypeRepository
     {
 
-        public static List<PetType> _petTypeTable = new List<PetType>();
-        private static int _petTypeId = 7;
+        public static List<PetType> _petTypes = new List<PetType>();
+        public static int _petTypeId = 7;
 
         public void InitData()
         {
+
+
             PetType dog = new PetType
             {
                 Name = "Dog",
@@ -46,34 +48,33 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Name = "Turtle",
                 Id = 6
             };
+            PetType beetle = new PetType
+            {
+                Name = "Beetle",
+                Id = 7
+            };
 
-            _petTypeTable.AddRange(new List<PetType> { dog, cat, owl, snake, panda, turtle });
+            _petTypes.AddRange(new List<PetType> { dog, cat, owl, snake, panda, turtle, beetle });
 
         }
 
 
-        public PetType Add(PetType petType)
+        public PetType Create(PetType petType)
         {
             petType.Id = _petTypeId++;
-            _petTypeTable.Add(petType);
+            _petTypes.Add(petType);
             return petType;
         }
 
-        public List<PetType> ReadPetType()
-        {
-            return _petTypeTable;
-        }
 
         public PetType ReadById(int id)
         {
-            return _petTypeTable.FirstOrDefault(petType => petType.Id == id);
+            return _petTypes.FirstOrDefault(petType => petType.Id == id);
         }
 
-       
-
-        public List<PetType> FindAllTypes()
+        public List<PetType> ReadAllTypes()
         {
-            return _petTypeTable;
+            return _petTypes;
         }
 
 

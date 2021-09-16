@@ -12,9 +12,8 @@ namespace _1337Corp.PetShopApp.Domain.Services
     public class PetService : IPetService
     {
         private IPetRepository _repo;
-
+        
                 
-
         public PetService(IPetRepository repo)
         {
             _repo = repo;
@@ -31,14 +30,14 @@ namespace _1337Corp.PetShopApp.Domain.Services
             return _repo.Add(pet);
         }
 
-        public string Delete(int petId)
+        public void Delete(int petId)
         {
-            return _repo.Delete(petId);
+            _repo.Delete(petId);
         }
 
         public List<Pet> GetAllPets()
         {
-            return _repo.FindAll();
+            return _repo.ReadAll();
         }
 
         public Pet Update(Pet updatePet)
@@ -47,39 +46,12 @@ namespace _1337Corp.PetShopApp.Domain.Services
         }
         
 
-        public List<Pet> GetPetsByType(PetType petType)
+        public List<Pet> GetPetsByType(string typesSearch)
         {
-            return _repo.ReadPetByType(petType);
-        }
+            var list = _repo.ReadAll();
+            var resultList = list.Where(pet => pet.Type.Name == typesSearch);
 
-        public void UpdatePetBirthDate(int idToUpdate, DateTime newPetBirthDate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdatePetColor(int idToUpdate, string newPetColoer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdatePetName(int idToUpdate, string newPetName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdatePetPrice(int idToUpdate, double newPetPrice)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdatePetSoldDate(int idToUpdate, DateTime newPetSoldDate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdatePetType(int idToUpdate, string newPetType)
-        {
-            throw new NotImplementedException();
+            return resultList.ToList();
         }
 
 
@@ -87,7 +59,7 @@ namespace _1337Corp.PetShopApp.Domain.Services
         {
             return _repo.ReadById(id);
         }
-
        
+
     }
 }
