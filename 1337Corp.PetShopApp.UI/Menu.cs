@@ -249,7 +249,9 @@ namespace _1337Corp.PetShopApp.UI
             Print(StringConstants.CreateNewPetText);
             Print(StringConstants.UpdatePetText);
             Print(StringConstants.DeletePetText);
+            Print("");
             Print(StringConstants.CheapestPetsText);
+            Print("");
             Print(StringConstants.ShowTypes);
             Print(StringConstants.CreateTypes);
 

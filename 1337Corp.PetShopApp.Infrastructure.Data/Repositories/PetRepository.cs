@@ -12,7 +12,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
     {
         private static List<PetType> _types = new List<PetType>();
         private static List<Pet> _pets = new List<Pet>();
-        private static int _id = 7;
+        private static int _id = 8;
         
 
         public void InitData()
