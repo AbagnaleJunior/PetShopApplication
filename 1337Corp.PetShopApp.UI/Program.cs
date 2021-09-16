@@ -11,24 +11,18 @@ namespace _1337Corp.PetShopApp.UI
     {
         static void Main(string[] args)
         {
-
             var serviceCollection = new ServiceCollection();
 
-          
-           
             serviceCollection.AddScoped<IPetRepository, PetRepository>();
             serviceCollection.AddScoped<IPetTypeRepository, PetTypeRepository>();
 
             serviceCollection.AddScoped<IPetService, PetService>();
             serviceCollection.AddScoped<IPetTypeService, PetTypeService>();
             
-
             var serviceProvider = serviceCollection.BuildServiceProvider();
-            
             var petService = serviceProvider.GetRequiredService<IPetService>();
             var petTypeService = serviceProvider.GetRequiredService<IPetTypeService>();
             
-
             var startUp = new Menu(petService, petTypeService);
             startUp.Start();
         }

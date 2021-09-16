@@ -8,8 +8,6 @@ namespace _1337Corp.PetShopApp.Domain.IRepositories
 {
     public interface IInitializableRepository
     {
-
         void InitData();
-        
     }
 }

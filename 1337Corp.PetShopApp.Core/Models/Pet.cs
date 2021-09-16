@@ -17,7 +17,5 @@ namespace _1337Corp.PetShopApp.Core.Models
         public DateTime SoldDate { get; set; }
         public string Color { get; set; }
         public double Price { get; set; }
-
-
     }
 }

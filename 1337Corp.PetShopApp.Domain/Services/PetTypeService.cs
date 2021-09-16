@@ -13,8 +13,7 @@ namespace _1337Corp.PetShopApp.Domain.Services
     {
         private IPetTypeRepository _repo;
 
-        
-        
+
         public PetTypeService(IPetTypeRepository repo)
         {
             _repo = repo;

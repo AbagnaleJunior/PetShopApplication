@@ -11,11 +11,9 @@ namespace _1337Corp.PetShopApp.Core.IServices
     {
         List<Pet> GetAllPets();
         List<Pet> GetPetsByType(string typesSearch);
-       
         Pet Create(Pet pet);
-        void Delete(int petId);
+        public void Delete(int petId);
         Pet Update(Pet pet);
         Pet SearchPetById(int id);
-        
     }
 }

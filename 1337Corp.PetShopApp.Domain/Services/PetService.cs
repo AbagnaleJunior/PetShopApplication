@@ -13,18 +13,17 @@ namespace _1337Corp.PetShopApp.Domain.Services
     {
         private IPetRepository _repo;
         
-                
+
         public PetService(IPetRepository repo)
         {
             _repo = repo;
-            
         }
 
         public void InitData()
         {
             _repo.InitData();
         }
-      
+
         public Pet Create(Pet pet)
         {
             return _repo.Add(pet);
@@ -45,7 +44,6 @@ namespace _1337Corp.PetShopApp.Domain.Services
             return _repo.Update(updatePet);
         }
         
-
         public List<Pet> GetPetsByType(string typesSearch)
         {
             var list = _repo.ReadAll();
@@ -53,7 +51,6 @@ namespace _1337Corp.PetShopApp.Domain.Services
 
             return resultList.ToList();
         }
-
 
         public Pet SearchPetById(int id)
         {

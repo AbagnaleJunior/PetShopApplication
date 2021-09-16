@@ -9,13 +9,10 @@ namespace _1337Corp.PetShopApp.Domain.IRepositories
 {
     public interface IPetRepository : IInitializableRepository
     {
-
         Pet Add(Pet pet);
         List<Pet> ReadAll();
-        void Delete(int petId);
-
+        public void Delete(int petId);
         Pet Update(Pet petUpdate);
-
         Pet ReadById(int id);
         List<Pet> ReadPetByType(PetType petType);
     }

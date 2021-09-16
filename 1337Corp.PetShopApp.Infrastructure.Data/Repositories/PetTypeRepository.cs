@@ -12,11 +12,10 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
     {
 
         public static List<PetType> _petTypes = new List<PetType>();
-        public static int _petTypeId = 7;
+        public static int _petTypeId = 8;
 
         public void InitData()
         {
-
 
             PetType dog = new PetType
             {
@@ -58,14 +57,12 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
 
         }
 
-
         public PetType Create(PetType petType)
         {
             petType.Id = _petTypeId++;
             _petTypes.Add(petType);
             return petType;
         }
-
 
         public PetType ReadById(int id)
         {

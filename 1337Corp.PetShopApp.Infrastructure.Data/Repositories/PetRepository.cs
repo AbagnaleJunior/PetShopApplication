@@ -17,6 +17,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
 
         public void InitData()
         {
+            //INITIATING PETTYPES
             PetType dog = new PetType
             {
                 Name = "dog",
@@ -55,6 +56,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
 
             _types.AddRange(new List<PetType> { dog, cat, owl, snake, panda, turtle, beetle });
 
+            //INITIATES PETS
             Pet pet1 = new Pet()
             {
                 Id = 1,
@@ -130,6 +132,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Color = "black",
                 Price = 1337
             };
+
             _pets.Add(pet1);
             _pets.Add(pet2);
             _pets.Add(pet3);
@@ -137,8 +140,6 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
             _pets.Add(pet5);
             _pets.Add(pet6);
             _pets.Add(pet7);
-
-
         }
 
         public Pet Add(Pet pet)
@@ -159,17 +160,16 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
 
         public Pet GetPetById(int id)
         {
-            Pet p = null;
+            Pet pet = null;
             for (int i = 0; i < _pets.Count; i++)
             {
                 if (_pets[i].Id == id)
                 {
-                    p = _pets[i];
+                    pet = _pets[i];
                 }
             }
-            return p;
+            return pet;
         }
-
 
         public List<Pet> ReadAll()
         {
@@ -186,7 +186,6 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
             pet.SoldDate = petUpdate.SoldDate;
 
             return pet;
-
         }
 
         public Pet ReadById(int id)
