@@ -39,5 +39,6 @@ namespace _1337Corp.PetShopApp.Domain.Services
             return _typeRepo.Insert(petType);
         }
 
+
     }
 }

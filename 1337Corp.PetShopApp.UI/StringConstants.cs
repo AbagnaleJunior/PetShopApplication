@@ -26,6 +26,7 @@ namespace _1337Corp.PetShopApp.UI
         //Create & Update pet
         public const string PetTypeText = "Type? Enter ID";
         public const string PetNameText = "Name?";
+        public const string PetOwnerNameText = "Owner?";
         public const string PetColorText = "Color?";
         public const string PetPriceText = "Price? (USD)";
         public const string PetSoldDateText = "Sold when? (dd-mm-yyyy)";

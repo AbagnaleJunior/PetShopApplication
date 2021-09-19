@@ -122,6 +122,20 @@ namespace _1337Corp.PetShopApp.UI
             Print("------------------------------------------");
         }
 
+        private void ReadOwners()
+        {
+
+            Clear();
+            Print("List of all owners:");
+
+            foreach (var owner in _ownerService.GetAll())
+            {
+                Print($"ID: {owner.Id} - {owner.Name}");
+            }
+            Print("");
+            Print("------------------------------------------");
+        }
+
         private void SearchForTypesOfPet()
         {
             Clear();
@@ -317,6 +331,12 @@ namespace _1337Corp.PetShopApp.UI
             Print(StringConstants.PetNameText);
             var petName = Console.ReadLine();
 
+            ReadOwners();
+            Print(StringConstants.PetOwnerNameText);
+            int ownerId = int.Parse(Console.ReadLine()!);
+            Owner petOwnerName = _ownerService.GetOwnerById(ownerId);
+            Clear();
+            
             Clear();
             Print(StringConstants.PetColorText);
             var petColor = Console.ReadLine();
@@ -337,6 +357,7 @@ namespace _1337Corp.PetShopApp.UI
             {
                 Type = petType,
                 Name = petName,
+                Owner = petOwnerName,
                 Color = petColor,
                 BirthDate = Convert.ToDateTime(petBirthDate),
                 Price = Convert.ToDouble(petPrice),
@@ -350,6 +371,7 @@ namespace _1337Corp.PetShopApp.UI
             Print($"Id: {pet.Id}");
             Print($"Type: {pet.Type.Name}");
             Print($"Name: {pet.Name}");
+            Print($"Owner: {pet.Owner.Name}");
             Print($"Color: {pet.Color}");
             Print($"BirthDate: {pet.BirthDate.ToString("dd-MM-yyyy")}");
             Print($"Price: {pet.Price}" + "$");

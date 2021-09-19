@@ -23,15 +23,15 @@ namespace _1337Corp.PetShopApp.Domain.Services
             _ownerRepo.InitData();
         }
 
-        //public Owner GetOwnerById(int id)
-        //{
-        //    return _ownerRepo.ReadById(id);
-        //}
+        public Owner GetOwnerById(int id)
+        {
+            return _ownerRepo.ReadById(id);
+        }
 
-        //public List<Owner> GetAll()
-        //{
-        //    return _ownerRepo.SelectAll();
-        //}
+        public List<Owner> GetAll()
+        {
+            return _ownerRepo.SelectAll();
+        }
 
         //public Owner CreateOwner(Owner owner)
         //{

@@ -11,8 +11,8 @@ namespace _1337Corp.PetShopApp.Domain.IRepositories
     {
 
         //Owner Insert(Owner owner);
-        //List<Owner> SelectAll();
-        //Owner ReadById(int id);
+        List<Owner> SelectAll();
+        Owner ReadById(int id);
         Owner ReadByName(string name);
         void InitData();
     }

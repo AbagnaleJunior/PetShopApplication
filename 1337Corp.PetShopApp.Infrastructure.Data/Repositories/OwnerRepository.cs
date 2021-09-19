@@ -39,18 +39,18 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data.Repositories
         //    return owner;
         //}
 
-        //public Owner ReadById(int id)
-        //{
-        //    return _dataOwners.FirstOrDefault(owner => owner.Id == id);
-        //}
+        public Owner ReadById(int id)
+        {
+            return _dataOwners.FirstOrDefault(owner => owner.Id == id);
+        }
         public Owner ReadByName(string name)
         {
             return _dataOwners.FirstOrDefault(owner => owner.Name.ToLower() == name.ToLower());
         }
 
-        //public List<Owner> SelectAll()
-        //{
-        //    return _dataOwners;
-        //}
+        public List<Owner> SelectAll()
+        {
+            return _dataOwners;
+        }
     }
 }
