@@ -11,7 +11,7 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
     public class PetTypeRepository : IPetTypeRepository
     {
 
-        public static List<PetType> _petTypes = new List<PetType>();
+        public static List<PetType> _dataTypes = new List<PetType>();
         public static int _petTypeId = 8;
 
         public void InitData()
@@ -53,27 +53,28 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data
                 Id = 7
             };
 
-            _petTypes.AddRange(new List<PetType> { dog, cat, owl, snake, panda, turtle, beetle });
-
+            _dataTypes.AddRange(new List<PetType> { dog, cat, owl, snake, panda, turtle, beetle });
         }
 
-        public PetType Create(PetType petType)
+        public PetType Insert(PetType petType)
         {
             petType.Id = _petTypeId++;
-            _petTypes.Add(petType);
+            _dataTypes.Add(petType);
             return petType;
         }
 
         public PetType ReadById(int id)
         {
-            return _petTypes.FirstOrDefault(petType => petType.Id == id);
+            return _dataTypes.FirstOrDefault(petType => petType.Id == id);
         }
-
-        public List<PetType> ReadAllTypes()
+        public PetType ReadByName(string name)
         {
-            return _petTypes;
+            return _dataTypes.FirstOrDefault(petType => petType.Name.ToLower() == name.ToLower());
         }
 
-
+        public List<PetType> SelectAll()
+        {
+            return _dataTypes;
+        }
     }
 }

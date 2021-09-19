@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace _1337Corp.PetShopApp.Core.IServices
 {
-    public interface IPetService : IInitializableService
+    public interface IPetService
     {
-        List<Pet> GetAllPets();
+        List<Pet> GetAll();
         List<Pet> GetPetsByType(string typesSearch);
-        Pet Create(Pet pet);
-        public void Delete(int petId);
-        Pet Update(Pet pet);
         Pet SearchPetById(int id);
+        Pet Create(Pet pet);
+        Pet Update(Pet pet);
+        public void Delete(int petId);
+        void InitData();
     }
 }

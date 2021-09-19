@@ -15,16 +15,19 @@ namespace _1337Corp.PetShopApp.UI
     {
         private IPetService _petService;
         private IPetTypeService _typeService;
-       
+        private IOwnerService _ownerService;
 
-        public Menu(IPetService petService, IPetTypeService typeService)
+        public Menu(IPetService petService, IPetTypeService typeService, IOwnerService ownerService)
         {
+            
             _petService = petService;
             _typeService = typeService;
+            _ownerService = ownerService;
         }
 
         public void Start()
         {
+            _ownerService.InitData();
             _typeService.InitData();
             _petService.InitData();
             
@@ -111,12 +114,10 @@ namespace _1337Corp.PetShopApp.UI
             Clear();
             Print("List of all types:");
             
-            foreach (var type in _typeService.GetAllTypes())
+            foreach (var type in _typeService.GetAll())
             {
                 Print($"ID: {type.Id} - {type.Name}");
-
             }
-
             Print("");
             Print("------------------------------------------");
         }
@@ -131,12 +132,10 @@ namespace _1337Corp.PetShopApp.UI
 
             foreach (var pet in _petService.GetPetsByType(TypesSearch))
             {
-                
                 Print($"ID: {pet.Id}, Type: {pet.Type.Name}, Name: {pet.Name}, BirthDate: {pet.BirthDate.ToString("dd-MM-yyyy")}, Color: {pet.Color}, Price: {pet.Price}, Sold on: {pet.SoldDate.ToString("dd-MM-yyyy")}");
                 
                 Print("------------------------------------------");
             }
-            
         }
 
         private void Update()
@@ -176,7 +175,7 @@ namespace _1337Corp.PetShopApp.UI
 
         private void ListCheapestPets()
         {
-            List<Pet> pets = _petService.GetAllPets();
+            List<Pet> pets = _petService.GetAll();
             List<Pet> cheapestPets = pets.OrderBy(pet => pet.Price).ToList();
 
             foreach (var pet in cheapestPets)
@@ -269,12 +268,13 @@ namespace _1337Corp.PetShopApp.UI
             Clear();
             Print("List of all your pets");
             Print("");
-            var pets = _petService.GetAllPets();
+            var pets = _petService.GetAll();
 
             foreach (var pet in pets)
             {
                 Print($"Id: {pet.Id}");
                 Print($"Type: {pet.Type.Name}");
+                Print($"Owner: {pet.Owner.Name}");
                 Print($"Name: {pet.Name}");
                 Print($"Color: {pet.Color}");
                 Print($"BirthDate: {pet.BirthDate.ToString("dd-MM-yyyy")}");
@@ -289,7 +289,7 @@ namespace _1337Corp.PetShopApp.UI
                 Clear();
                 Print("List of all your pets");
                 Print("");
-                var pets = _petService.GetAllPets();
+                var pets = _petService.GetAll();
 
                 foreach (var pet in pets)
                 {
