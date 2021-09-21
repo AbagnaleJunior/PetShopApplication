@@ -10,10 +10,11 @@ namespace _1337Corp.PetShopApp.Domain.IRepositories
     public interface IOwnerRepository
     {
 
-        //Owner Insert(Owner owner);
+        Owner Insert(Owner owner);
         List<Owner> SelectAll();
         Owner ReadById(int id);
         Owner ReadByName(string name);
         void InitData();
+        public void Delete(int ownerId);
     }
 }

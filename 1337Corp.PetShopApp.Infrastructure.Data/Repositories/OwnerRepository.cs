@@ -12,11 +12,10 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data.Repositories
     {
 
         public static List<Owner> _dataOwners = new List<Owner>();
-        public static int _ownerId = 2;
+        public static int _ownerId = 3;
 
         public void InitData()
         {
-
             Owner morten = new Owner
             {
                 Name = "Morten",
@@ -28,16 +27,15 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data.Repositories
                 Id = 2
             };
 
-
             _dataOwners.AddRange(new List<Owner> { morten, karsten });
         }
 
-        //public Owner Insert(Owner owner)
-        //{
-        //    owner.Id = _ownerId++;
-        //    _dataOwners.Add(owner);
-        //    return owner;
-        //}
+        public Owner Insert(Owner owner)
+        {
+            owner.Id = _ownerId++;
+            _dataOwners.Add(owner);
+            return owner;
+        }
 
         public Owner ReadById(int id)
         {
@@ -51,6 +49,14 @@ namespace _1337Corp.PetShopApp.Infrastructure.Data.Repositories
         public List<Owner> SelectAll()
         {
             return _dataOwners;
+        }
+        public void Delete(int id)
+        {
+            Owner owner = ReadById(id);
+            if (owner != null)
+            {
+                _dataOwners.Remove(owner);
+            }
         }
     }
 }

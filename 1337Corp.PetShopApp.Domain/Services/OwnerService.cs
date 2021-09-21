@@ -33,9 +33,14 @@ namespace _1337Corp.PetShopApp.Domain.Services
             return _ownerRepo.SelectAll();
         }
 
-        //public Owner CreateOwner(Owner owner)
-        //{
-        //    return _ownerRepo.Insert(owner);
-        //}
+        public Owner CreateOwner(Owner owner)
+        {
+            return _ownerRepo.Insert(owner);
+        }
+
+        public void Delete(int ownerId)
+        {
+            _ownerRepo.Delete(ownerId);
+        }
     }
 }

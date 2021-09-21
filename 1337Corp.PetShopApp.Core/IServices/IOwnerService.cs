@@ -10,8 +10,9 @@ namespace _1337Corp.PetShopApp.Core.IServices
     public interface IOwnerService
     {
         List<Owner> GetAll();
-        //Owner CreateOwner(Owner owner);
+        Owner CreateOwner(Owner owner);
         void InitData();
         Owner GetOwnerById(int id);
+        public void Delete(int ownerId);
     }
 }

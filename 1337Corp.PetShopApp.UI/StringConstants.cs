@@ -9,19 +9,40 @@ namespace _1337Corp.PetShopApp.UI
     public class StringConstants
     {
        
-        public static readonly string IntroMessageText = "Welcome to the Pet Shop!";
-      
-        //Menu
-        public const string MenuGuideText = "Type in your choice:";
+        public static readonly string IntroMessageText = "Welcome to the Pet Shop!\n";
+
+        //Main Menu
+        public const string MenuMainMenuText = "MAIN MENU";
+        public const string MenuGuideText = "Categories:";
+
+        public const string MenuPets = "1: Pets";
+        public const string MenuTypes = "2: Types";
+        public const string MenuOwners = "3: Owners";
+        public const string MainMenu = "9: Main Menu";
+
+        public const string ExitPetShopText = "0: Exit Pet Shop";
+        
+        //Pets Menu
         public const string PrintAllPetsListText = "1: Show all pets";
-        public const string SearchByPetTypeText = "2: Search for types of pet";
+        public const string CheapestPetsText = "2: Sort Petlist by Price (low to high)";
         public const string CreateNewPetText = "3: Create a new pet";
         public const string UpdatePetText = "4: Update a pet";
         public const string DeletePetText = "5: Delete pet";
-        public const string CheapestPetsText = "6: Sort Petlist by Price (low to high)";
-        public const string ShowTypes = "7: Show pet types";
-        public const string CreateTypes = "8: Create Type";
-        public const string ExitPetShopText = "0: Exit Pet Shop";
+
+        //Types Menu
+        public const string ShowTypes = "1: Show pet types";
+        public const string SearchByPetTypeText = "2: Search for types of pet";
+        public const string CreateTypes = "3: Create Type";
+
+
+        //OwnerMenu
+        public const string PrintAllOwnersListText = "1: Show all owners";
+        public const string CreateNewOwnerText = "2: Create new owner";
+        public const string UpdateOwnerText = "3: Update owner";
+        public const string DeleteOwnerText = "4: Delete owner";
+        public const string DeleteEnterOwnerId = "Enter ID to delete owner";
+
+
 
         //Create & Update pet
         public const string PetTypeText = "Type? Enter ID";
@@ -34,6 +55,7 @@ namespace _1337Corp.PetShopApp.UI
         
         public const string UpdatedEnterPetID = "Enter ID to update pet";
         public const string UpdatedPetName = "Enter your pets new name:";
+        public const string UpdatedEnterOwnerId = "Enter your pets new owner:";
         public const string UpdatedPrice = "Enter your pets new price:";
         public const string UpdatedColor = "Enter new color";
         public const string UpdatedSoldDate = "Enter new sold date";
